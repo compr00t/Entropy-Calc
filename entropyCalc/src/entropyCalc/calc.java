@@ -17,10 +17,12 @@ public class calc {
         }
         
         int index = 0;
-        int amount = 1000;
+        int amount = 0;
         String path = args[0];
         
         String rawInput = readFile(path);
+        amount = rawInput.length()/100;
+        
         List<String> strings = cutString(index, rawInput, amount);
         
         System.out.println("Calculating Entoropy for " + path + ":");
