@@ -12,7 +12,7 @@ public class calc {
         
         if(args.length == 0)
         {
-            System.out.println("Proper Usage is: calc \"\\path\\to\\file\"");
+            System.out.println("Proper Usage is: calc \"/path/to/file\"");
             System.exit(0);
         }
         
