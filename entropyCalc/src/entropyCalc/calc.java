@@ -10,6 +10,12 @@ public class calc {
 
     public static void main(String[] args) throws IOException {
         
+        if(args.length == 0)
+        {
+            System.out.println("Proper Usage is: calc \"\\path\\to\\file\"");
+            System.exit(0);
+        }
+        
         int index = 0;
         int amount = 1000;
         String path = args[0];
