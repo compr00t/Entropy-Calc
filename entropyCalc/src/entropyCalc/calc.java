@@ -18,19 +18,36 @@ public class calc {
         
         int index = 0;
         int amount = 0;
+        
+        double minimalEntorpy = 10;
+        double maximalEntropy = 0;
+        double averageEntropy = 0;
+        
         String path = args[0];
         
         String rawInput = readFile(path);
         amount = rawInput.length()/100;
         
+        averageEntropy = Entropy.getShannonEntropy(rawInput);
+        
         List<String> strings = cutString(index, rawInput, amount);
         
         System.out.println("Calculating Entoropy for " + path + ":");
-        System.out.println("");
+        System.out.println();
         
         for (String str : strings) {
-            System.out.println("[" + ++index + "] " + Entropy.getShannonEntropy(str));
+            double entorpy = Entropy.getShannonEntropy(str);
+            
+            if (minimalEntorpy >= entorpy) { minimalEntorpy = entorpy; }
+            if (maximalEntropy <= entorpy) { maximalEntropy = entorpy; }
+            
+            System.out.println("[" + String.format("%03d", ++index) + "] " + entorpy);
         }
+        
+        System.out.println();
+        System.out.println("[Min] " + minimalEntorpy);
+        System.out.println("[Max] " + maximalEntropy);
+        System.out.println("[Avg] " + averageEntropy);
     }
 
     private static List<String> cutString(int index, String rawInput, int amount) {
