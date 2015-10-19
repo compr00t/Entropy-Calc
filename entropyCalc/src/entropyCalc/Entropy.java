@@ -6,6 +6,10 @@ import java.util.HashMap;
 
 public class Entropy {
 
+    /*
+     * Calculation from http://rosettacode.org/wiki/Entropy#Java
+     */
+    
     public static double getShannonEntropy(String s) {
         int n = 0;
         Map<Character, Integer> occ = new HashMap<>();
