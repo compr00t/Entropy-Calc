@@ -6,4 +6,4 @@ A tool for splitting the input in 100 parts and calculating the entorpy of each.
 This can help analysing a file encrypted by a ransomware regarding it's quality. 
 
 ### Usage
-calc /path/to/file
+java -jar entorpyCalc /path/to/file
