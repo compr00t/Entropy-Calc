@@ -26,7 +26,7 @@ public class calc {
         String path = args[0];
         
         String rawInput = readFile(path);
-        amount = rawInput.length()/100;
+        amount = rawInput.length()/50;
         
         averageEntropy = Entropy.getShannonEntropy(rawInput);
         
