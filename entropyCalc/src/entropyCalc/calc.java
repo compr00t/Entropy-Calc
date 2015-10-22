@@ -10,11 +10,13 @@ public class calc {
 
     public static void main(String[] args) throws IOException {
         
-        if(args.length == 0)
+        if(args.length < 2)
         {
-            System.out.println("Proper Usage is: calc \"/path/to/file\"");
+            System.out.println("Proper Usage is: calc \"/path/to/file\" numb_of_parts");
             System.exit(0);
         }
+        
+        int split = Integer.parseInt(args[1]);
         
         int index = 0;
         int amount = 0;
@@ -26,7 +28,7 @@ public class calc {
         String path = args[0];
         
         String rawInput = readFile(path);
-        amount = rawInput.length()/50;
+        amount = rawInput.length()/split;
         
         averageEntropy = Entropy.getShannonEntropy(rawInput);
         
