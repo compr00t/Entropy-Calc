@@ -9,52 +9,67 @@ import java.util.List;
 public class calc {
 
     public static void main(String[] args) throws IOException {
-        
-        if(args.length < 2)
-        {
+
+        if (args.length < 2) {
             System.out.println("Proper Usage is: calc \"/path/to/file\" numb_of_parts");
             System.exit(0);
         }
-        
+
+        double filter = 999;
         int split = Integer.parseInt(args[1]);
-        
+
+        if (args.length == 3) {
+            filter = Integer.parseInt(args[2]);
+        }
+
         int index = 0;
         int amount = 0;
-        
+
         double minimalEntorpy = 10;
         double maximalEntropy = 0;
         double averageEntropy = 0;
-        
+
         String path = args[0];
-        
+
         String rawInput = readFile(path);
-        amount = rawInput.length()/split;
-        
+        amount = rawInput.length() / split;
+
         averageEntropy = Entropy.getShannonEntropy(rawInput);
-        
+
         List<String> strings = cutString(index, rawInput, amount);
-        
+
         System.out.println("Calculating Entoropy for " + path + ":");
         System.out.println();
-        
+
         for (String str : strings) {
             double entorpy = Entropy.getShannonEntropy(str);
-            
-            if (minimalEntorpy >= entorpy) { minimalEntorpy = entorpy; }
-            if (maximalEntropy <= entorpy) { maximalEntropy = entorpy; }
-            
-            System.out.println("[" + String.format("%03d", ++index) + "] " + entorpy);
+
+            if (minimalEntorpy >= entorpy) {
+                minimalEntorpy = entorpy;
+            }
+            if (maximalEntropy <= entorpy) {
+                maximalEntropy = entorpy;
+            }
+
+            String startChar = String.format("%06d", ((++index-1) * amount + 1));
+            String endChar = String.format("%06d", ((index-1) * amount + str.length()));
+
+            if (filter == 999) {
+                System.out.println("[" + startChar + " - " + endChar + "] " + entorpy);
+            } else if (entorpy <= filter){
+                System.out.println("[" + startChar + " - " + endChar + "] " + entorpy);
+            }
         }
-        
+
         System.out.println();
-        System.out.println("[Min] " + minimalEntorpy);
-        System.out.println("[Max] " + maximalEntropy);
-        System.out.println("[Avg] " + averageEntropy);
+        System.out.println("[Minimum] " + minimalEntorpy);
+        System.out.println("[Maximum] " + maximalEntropy);
+        System.out.println("[Average] " + averageEntropy);
     }
 
     private static List<String> cutString(int index, String rawInput, int amount) {
         List<String> strings = new ArrayList<String>();
-        
+
         while (index < rawInput.length()) {
             strings.add(rawInput.substring(index, Math.min(index + amount, rawInput.length())));
             index += amount;
