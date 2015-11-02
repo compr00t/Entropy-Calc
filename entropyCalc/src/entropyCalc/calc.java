@@ -64,7 +64,7 @@ public class calc {
         System.out.println();
         System.out.println("[Minimum] " + minimalEntorpy);
         System.out.println("[Maximum] " + maximalEntropy);
-        System.out.println("[Average] " + averageEntropy);
+        System.out.println("[Complete] " + averageEntropy);
     }
 
     private static List<String> cutString(int index, String rawInput, int amount) {
