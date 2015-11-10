@@ -50,14 +50,13 @@ public class calc {
             if (maximalEntropy <= entorpy) {
                 maximalEntropy = entorpy;
             }
-
-            String startChar = String.format("%06d", ((++index-1) * amount + 1));
-            String endChar = String.format("%06d", ((index-1) * amount + str.length()));
+            
+            int startIndex = ((++index-1) * amount + 1);
 
             if (filter == 999) {
-                System.out.println("[" + startChar + " - " + endChar + "] " + entorpy);
+                System.out.println("[0x" + Integer.toHexString(startIndex) + "] " + entorpy);
             } else if (entorpy <= filter){
-                System.out.println("[" + startChar + " - " + endChar + "] " + entorpy);
+                System.out.println("[0x" + Integer.toHexString(startIndex) + "] " + entorpy);
             }
         }
 
@@ -81,5 +80,4 @@ public class calc {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded);
     }
-
 }
