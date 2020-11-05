@@ -1,7 +1,7 @@
 This repo contains a set of tools I developed or extended.
 Use at your own risk!
 
-## entorpyCalc
+## Entropy Calc
 A tool for dividing the input in X parts and calculating the entorpy of each. 
 This can help analysing a file encrypted by a ransomware regarding its quality.
 
